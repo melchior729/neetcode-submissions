@@ -1,0 +1,16 @@
+name: Notify abhays-list
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger abhays-list sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.ABHAYS_LIST_PAT }}
+          repository: melchior729/abhays-list
+          event-type: submissions-updated
